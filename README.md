@@ -4,7 +4,7 @@
 
 ## API
 
-### Props
+### 表格的属性
 
 | 属性名             | 类型      | 默认    | 说明                                            |
 | ------------------ | --------- | ------- | ----------------------------------------------- |
@@ -26,10 +26,147 @@
 | `onSortChange` |   表格的排序             | row     |
 | `setTable`     |   每一个单元格的点击事件 | key,row |
 
-### columns
+### 单列的属性
 
 | 属性名   | 类型      | 默认    | 说明                                      |
 | -------- | --------- | ------- | ----------------------------------------- |
 | `attrs`  | `Boolean` | `false` | 某一列 el-table-column 的属性             |
 | `fun`    | `Array`   | `[]`    | 某一列 el-table-column 的方法             |
 | `isLink` | `Array`   | `[]`    | 某一列 el-table-column 是否开启 link 模式 |
+
+### 使用案例
+
+````html
+...
+<PivotTable
+  :tableAttrs="{
+        cellStyle
+      }"
+  :columns=" columns"
+  :tableData="tableData"
+  :firstColumnAttrs="firstColumnAttrs"
+  :tableType="tableType"
+  :isLink=" false "
+  :linkAttrs="{
+        style: 'color: #409eff'
+      }"
+  @setTable="setTable"
+  @onSortChange="onSortChange"
+></PivotTable>
+... ```
+````
+
+```js
+let firstColumnAttrs = {
+  prop: "organization",
+  label: "组织区域",
+  firstMinWidth: "130px"
+};
+
+const tableData = ref([
+  {
+    houseName: "9200",
+    temperatureDifference: "2°C",
+    extremeHumidity: "50%",
+    CO2: "29ppm",
+    farm: "test-1",
+    organization: "组织区域1",
+    houseCode: 4564554
+  },
+  {
+    houseName: "9100",
+    temperatureDifference: "3°C",
+    extremeHumidity: "50%",
+    CO2: "29ppm",
+    farm: "test-1",
+    organization: "组织区域1"
+  },
+  {
+    houseName: "9010",
+    temperatureDifference: "3°C",
+    extremeHumidity: "50%",
+    CO2: "30ppm",
+    farm: "test-1",
+    organization: "组织区域1"
+  },
+  {
+    temperatureDifference: "4°C",
+    houseName: "9100plus",
+    extremeHumidity: "50%",
+    CO2: "34ppm",
+    farm: "test-1",
+    organization: "组织区域1"
+  }
+]);
+
+const columns = ref([
+  {
+    key: "farm",
+    label: "鸡场",
+    name: "鸡场",
+    isLink: true,
+    attrs: {
+      fixed: true,
+
+      minWidth: "100px"
+    }
+  },
+  {
+    key: "houseName",
+    label: "鸡舍",
+    name: "鸡舍",
+    isLink: true,
+    attrs: {
+      fixed: true,
+
+      minWidth: "100px"
+    }
+  },
+  {
+    key: "temperatureDifference",
+    name: "温度极差",
+    label: "温度极差",
+    attrs: {
+      sortable: "custom",
+      minWidth: "500px"
+    }
+  },
+  {
+    key: "extremeHumidity",
+    name: "湿度极差",
+    label: "湿度极差",
+
+    attrs: {
+      sortable: "custom",
+      minWidth: "500px"
+    }
+  },
+  {
+    key: "CO2",
+    name: "CO₂极差",
+    label: "CO₂极差",
+    minWidth: "500px",
+    attrs: {
+      sortable: "custom",
+      minWidth: "500px"
+    }
+  }
+]);
+const tableType = ref(false);
+// 行列转换
+
+function tableRowsToColumns() {
+  tableType.value = !tableType.value;
+}
+
+function onSortChange(row) {
+  console.log(1111, row);
+}
+
+function setTable(key, row) {
+  console.log(1111, key, row);
+  if (key == "houseName") {
+  } else if (key == "farm") {
+  }
+}
+```
