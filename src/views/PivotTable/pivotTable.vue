@@ -8,7 +8,7 @@
     height="240px"
     @sort-change="onSortChange"
     v-bind="props.tableAttrs"
-    v-on="props.tableFun"
+    v-on="props.tableEvent"
   >
     <el-table-column
       align="center"
@@ -16,19 +16,19 @@
       fixed
       min-width="170px"
       v-bind="props.firstColumnAttrs"
-      v-on="props.firstColumnFun"
+      v-on="props.firstColumnEvent"
     >
       <template #default="scope">
         <el-link
-          @click="setTable(props.firstColumnAttrs.prop, scope.row)"
+          @click="cellClick(props.firstColumnAttrs.prop, scope.row)"
           v-if="props.isLink"
           type="primary"
           v-bind="props.linkAttrs"
-          v-on="props.linkFun"
+          v-on="props.linkEvent"
         >
           {{ scope.row[props.firstColumnAttrs.prop] }}
         </el-link>
-        <div @click="setTable(props.firstColumnAttrs.prop, scope.row)" v-else>
+        <div @click="cellClick(props.firstColumnAttrs.prop, scope.row)" v-else>
           {{ scope.row[props.firstColumnAttrs.prop] }}
         </div>
       </template>
@@ -43,19 +43,19 @@
       header-align="center"
       min-width="170px"
       v-bind="column.attrs"
-      v-on="column.fun"
+      v-on="column.event"
     >
       <template #default="scope">
         <el-link
-          @click="setTable(column.key, scope.row)"
+          @click="cellClick(column.key, scope.row)"
           v-if="column.isLink"
           type="primary"
           v-bind="props.linkAttrs"
-          v-on="props.linkFun"
+          v-on="props.linkEvent"
         >
           {{ scope.row[column.key] }}
         </el-link>
-        <div @click="setTable(column.key, scope.row)" v-else>
+        <div @click="cellClick(column.key, scope.row)" v-else>
           {{ scope.row[column.key] }}
         </div>
       </template>
@@ -67,7 +67,7 @@
     class="w-full"
     height="240px"
     v-bind="props.tableAttrs"
-    v-on="props.tableFun"
+    v-on="props.tableEvent"
     v-else
   >
     <el-table-column
@@ -75,7 +75,7 @@
       show-overflow-tooltip
       min-width="170px"
       v-bind="props.firstColumnAttrs"
-      v-on="props.firstColumnFun"
+      v-on="props.firstColumnEvent"
     >
       <template #default="scope">
         <div>
@@ -93,15 +93,15 @@
       header-align="center"
       min-width="170px"
       v-bind="column.attrs"
-      v-on="column.fun"
+      v-on="column.event"
     >
       <template #header>
         <el-link
           v-if="props.isLink"
           type="primary"
-          @click="setTable(props.firstColumnAttrs.prop, column)"
+          @click="cellClick(props.firstColumnAttrs.prop, column)"
           v-bind="props.linkAttrs"
-          v-on="props.linkFun"
+          v-on="props.linkEvent"
         >
           {{ column[props.firstColumnAttrs.prop] }}
         </el-link>
@@ -111,15 +111,15 @@
       </template>
       <template #default="scope">
         <el-link
-          @click="setTable(props.columns[scope.$index].key, column)"
+          @click="cellClick(props.columns[scope.$index].key, column)"
           v-if="props.columns[scope.$index].isLink"
           type="primary"
           v-bind="props.linkAttrs"
-          v-on="props.linkFun"
+          v-on="props.linkEvent"
         >
           {{ scope.row[props.columns[scope.$index].key + index] }}
         </el-link>
-        <div @click="setTable(props.columns[scope.$index].key, column)" v-else>
+        <div @click="cellClick(props.columns[scope.$index].key, column)" v-else>
           {{ scope.row[props.columns[scope.$index].key + index] }}
         </div>
       </template>
@@ -142,7 +142,7 @@ const props = defineProps({
     type: Object,
     default: () => ({})
   },
-  firstColumnFun: {
+  firstColumnEvent: {
     type: Object,
     default: () => ({})
   },
@@ -150,7 +150,7 @@ const props = defineProps({
     type: Object,
     default: () => ({})
   },
-  tableFun: {
+  tableEvent: {
     type: Object,
     default: () => ({})
   },
@@ -162,19 +162,19 @@ const props = defineProps({
     type: Object,
     default: () => ({})
   },
-  linkFun: {
+  linkEvent: {
     type: Object,
     default: () => ({})
   }
 });
 
-const emit = defineEmits(["setTable", "onSortChange"]);
+const emit = defineEmits(["cellClick", "onSortChange"]);
 // 行列转换
 const rcColumns = ref([]);
 const rcTableData = ref([]);
 
-function setTable(key, row) {
-  emit("setTable", key, row);
+function cellClick(key, row) {
+  emit("cellClick", key, row);
 }
 
 watch(
