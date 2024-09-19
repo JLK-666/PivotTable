@@ -21,9 +21,10 @@
 
 ### 事件
 
-| Prop | Description | 形参|
-| `onSortChange` |   表格的排序 | row|
-| `setTable`|   每一个单元格的点击事件 | key,row|
+| Prop           | Description              | 形参    |
+| -------------- | ------------------------ | ------- |
+| `onSortChange` |   表格的排序             | row     |
+| `setTable`     |   每一个单元格的点击事件 | key,row |
 
 ### columns
 
