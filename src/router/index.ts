@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/index",
     name: "index",
-    component: () => import("@/views/PivotTable/pivotTable.vue"),
+    component: () => import("@/views/index.vue"),
     meta: {
       title: "index",
       noCache: true
