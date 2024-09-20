@@ -36,8 +36,7 @@
 
 ### 使用案例
 
-````html
-...
+```html
 <PivotTable
   :tableAttrs="{
         cellStyle
@@ -53,8 +52,7 @@
   @cellClick="cellClick"
   @onSortChange="onSortChange"
 ></PivotTable>
-... ```
-````
+```
 
 ```js
 let firstColumnAttrs = {

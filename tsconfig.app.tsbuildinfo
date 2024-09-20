@@ -1,1 +1,1 @@
-{"root":["./env.d.ts","./src/app.vue","./src/main.ts","./src/vite-env.d.ts","./src/components/helloworld.vue","./src/router/index.ts","./src/views/pivottable/index.ts","./src/views/pivottable/pivottable.vue"],"version":"5.6.2"}
+{"root":["./env.d.ts","./src/app.vue","./src/main.ts","./src/vite-env.d.ts","./src/components/pivottable/index.ts","./src/components/pivottable/pivottable.vue","./src/router/index.ts","./src/views/index.vue"],"version":"5.6.2"}

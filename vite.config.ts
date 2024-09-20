@@ -11,7 +11,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: "src/views/PivotTable/index.ts",
+      entry: "src/components/PivotTable/index.ts",
       name: "PivotTable"
     },
     rollupOptions: {
