@@ -2,6 +2,21 @@
 
 基于 Element-plus 表格的 行列转换的实现
 
+### 安装
+
+```bash
+npm i jlk-pivottable
+```
+
+```js
+/* main.js */
+import { createApp } from "vue";
+import App from "./App.vue";
+import PivotTable from "jlk-pivottable";
+const app = createApp(App);
+app.use(PivotTable);
+```
+
 ## API
 
 ### 表格的属性
@@ -36,7 +51,8 @@
 
 ### 使用案例
 
-```html
+````html
+...
 <PivotTable
   :tableAttrs="{
         cellStyle
@@ -52,7 +68,8 @@
   @cellClick="cellClick"
   @onSortChange="onSortChange"
 ></PivotTable>
-```
+... ```
+````
 
 ```js
 let firstColumnAttrs = {
