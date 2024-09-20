@@ -5,6 +5,7 @@
     </div>
     <div>
       <PivotTable
+        ref="pivotTable"
         :tableAttrs="{
           cellStyle
         }"
@@ -35,7 +36,8 @@ const tableData = ref([
     CO2: "29ppm",
     farm: "test-1",
     organization: "组织区域1",
-    houseCode: 4564554
+    houseCode: 4564554,
+    id: "1"
   },
   {
     houseName: "9100",
@@ -43,7 +45,8 @@ const tableData = ref([
     extremeHumidity: "50%",
     CO2: "29ppm",
     farm: "test-1",
-    organization: "组织区域1"
+    organization: "组织区域1",
+    id: "2"
   },
   {
     houseName: "9010",
@@ -51,7 +54,8 @@ const tableData = ref([
     extremeHumidity: "50%",
     CO2: "30ppm",
     farm: "test-1",
-    organization: "组织区域1"
+    organization: "组织区域1",
+    id: "3"
   },
   {
     temperatureDifference: "4°C",
@@ -59,7 +63,8 @@ const tableData = ref([
     extremeHumidity: "50%",
     CO2: "34ppm",
     farm: "test-1",
-    organization: "组织区域1"
+    organization: "组织区域1",
+    id: "4"
   }
 ]);
 
@@ -133,12 +138,15 @@ function cellClick(key, row) {
   } else if (key == "farm") {
   }
 }
-
+let pivotTable = ref(null);
 const average = ref(3);
 
 setTimeout(() => {
   average.value = 2;
 }, 5000);
+setTimeout(() => {
+  pivotTable.value.setTableData("id", "3", "temperatureDifference", "8°C");
+}, 2000);
 
 function cellStyle({ row, column, rowIndex, columnIndex }) {
   //根据业务定制

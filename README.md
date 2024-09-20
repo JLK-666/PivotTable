@@ -36,10 +36,11 @@ app.use(PivotTable);
 
 ### 事件
 
-| Prop           | Description              | 形参    |
-| -------------- | ------------------------ | ------- |
-| `onSortChange` |   表格的排序             | row     |
-| `cellClick`    |   每一个单元格的点击事件 | key,row |
+| Prop           | Description              | 形参                      |
+| -------------- | ------------------------ | ------------------------- |
+| `onSortChange` |   表格的排序             | row                       |
+| `cellClick`    |   每一个单元格的点击事件 | key,row                   |
+| `setTableData` |   更新表格数据方法       | idName, idValue, key, val |
 
 ### 单列的属性
 
@@ -54,6 +55,7 @@ app.use(PivotTable);
 ````html
 ...
 <PivotTable
+  ref="pivotTable"
   :tableAttrs="{
         cellStyle
       }"
@@ -177,6 +179,12 @@ function tableRowsToColumns() {
 function onSortChange(row) {
   console.log(1111, row);
 }
+
+let pivotTable = ref(null);
+
+setTimeout(() => {
+  pivotTable.value.setTableData("id", "3", "temperatureDifference", "8°C");
+}, 2000);
 
 function cellClick(key, row) {
   console.log(1111, key, row);
